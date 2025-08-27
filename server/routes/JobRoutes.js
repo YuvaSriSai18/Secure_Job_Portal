@@ -22,7 +22,4 @@ router.delete("/:id", verifyToken, authorizeRoles(UserRole.ADMIN), JobController
 router.get("/", verifyToken, authorizeRoles(UserRole.ADMIN, UserRole.HR, UserRole.CANDIDATE), JobController.getAllJobs);
 router.get("/:id", verifyToken, authorizeRoles(UserRole.ADMIN, UserRole.HR, UserRole.CANDIDATE), JobController.getJobById);
 
-// ================== CANDIDATE ONLY ==================
-router.post("/:id/apply", verifyToken, authorizeRoles(UserRole.CANDIDATE), JobController.applyJob);
-
 module.exports = router;

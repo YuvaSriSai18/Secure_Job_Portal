@@ -2,13 +2,13 @@
 const express = require("express");
 const router = express.Router();
 const applicationController = require("../controllers/applicationController");
-const { protect, authorizeRoles } = require("../middlewares/auth");
+const { verifyToken, authorizeRoles } = require("../middlewares/auth");
 const { UserRole } = require("../models/User");
 
 // Candidate applies to a job
 router.post(
   "/:jobId",
-  protect,
+  verifyToken,
   authorizeRoles(UserRole.CANDIDATE),
   applicationController.applyToJob
 );
@@ -16,7 +16,7 @@ router.post(
 // Candidate/Employee - view own applications
 router.get(
   "/my",
-  protect,
+  verifyToken,
   authorizeRoles(UserRole.CANDIDATE, UserRole.EMPLOYEE),
   applicationController.getMyApplications
 );
@@ -24,7 +24,7 @@ router.get(
 // HR/Admin - view applications for a job
 router.get(
   "/job/:jobId",
-  protect,
+  verifyToken,
   authorizeRoles(UserRole.HR, UserRole.ADMIN),
   applicationController.getApplicationsForJob
 );
@@ -32,7 +32,7 @@ router.get(
 // HR/Admin - update application status
 router.patch(
   "/:id/status",
-  protect,
+  verifyToken,
   authorizeRoles(UserRole.HR, UserRole.ADMIN),
   applicationController.updateApplicationStatus
 );

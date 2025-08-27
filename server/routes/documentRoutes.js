@@ -1,39 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const documentController = require("../controllers/documentController");
-const { protect, authorizeRoles } = require("../middlewares/auth");
-const { UserRole } = require("../models/User");
+const { verifyToken } = require("../middlewares/auth");
 
-// Upload document → (Candidate/Employee/HR/Admin)
-router.post(
-  "/upload",
-  protect,
-  authorizeRoles(UserRole.CANDIDATE, UserRole.EMPLOYEE, UserRole.HR, UserRole.ADMIN),
-  documentController.uploadDocument
-);
+// All roles can upload
+router.post("/upload", verifyToken, documentController.uploadDocument);
 
-// Get my documents
-router.get(
-  "/my",
-  protect,
-  authorizeRoles(UserRole.CANDIDATE, UserRole.EMPLOYEE, UserRole.HR, UserRole.ADMIN),
-  documentController.getMyDocuments
-);
+// Get current user's documents
+router.get("/my", verifyToken, documentController.getMyDocuments);
 
-// Download/Preview document
-router.get(
-  "/:id",
-  protect,
-  authorizeRoles(UserRole.CANDIDATE, UserRole.EMPLOYEE, UserRole.HR, UserRole.ADMIN),
-  documentController.getDocument
-);
+// Get single document (access handled in controller)
+router.get("/:id", verifyToken, documentController.getDocument);
 
-// Delete document → (Owner / HR / Admin)
-router.delete(
-  "/:id",
-  protect,
-  authorizeRoles(UserRole.CANDIDATE, UserRole.EMPLOYEE, UserRole.HR, UserRole.ADMIN),
-  documentController.deleteDocument
-);
+// Delete document (access handled in controller)
+router.delete("/:id", verifyToken, documentController.deleteDocument);
 
 module.exports = router;

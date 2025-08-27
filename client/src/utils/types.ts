@@ -30,7 +30,7 @@ export interface AuthState {
   userData: User;
 }
 export interface Job {
-  _id?: string;
+  _id?: string | null;
   title: string;
   description?: string;
   department?: string;
@@ -38,7 +38,7 @@ export interface Job {
   postedBy?: string; // userId
   isActive?: boolean;
   salary?: number;
-  tags?: string[];
+  tags?: string[] ;
   experienceRequired?: string;
   jobType?: "full-time" | "part-time" | "internship";
   createdAt?: string;
@@ -49,4 +49,22 @@ export interface userData {
   password?: string;
   role?: string;
   name?: string;
+}
+export interface Application {
+  _id?: string;
+  job: string; // Job ID
+  candidate: string; // User ID
+  resumeUrl?: string;
+  coverLetter?: string;
+  status: "applied" | "shortlisted" | "rejected" | "selected";
+  feedback?: string;
+  interviewDate?: string; // ISO string
+  attachments?: {
+    fileName: string;
+    filePath: string;
+    fileType: string;
+  }[];
+  appliedVia?: "web" | "mobile" | "email";
+  createdAt?: string;
+  updatedAt?: string;
 }

@@ -21,6 +21,11 @@ export default function AdminDashboard() {
       description: "Create, update, or delete job posts",
       path: "/admin/jobs",
     },
+    {
+      title: "Applications for Jobs",
+      description: "View Applications for Jobs",
+      path: "/admin/job-applications",
+    },
     // {
     //   title: "Audit Logs",
     //   description: "View system activity logs and events",

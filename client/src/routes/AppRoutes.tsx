@@ -21,6 +21,7 @@ import AdminDocs from "@/pages/admin/Docs";
 import AdminJobs from "@/pages/admin/Jobs";
 import EmployeeDocuments from "@/pages/employee/Documents";
 import EmployeeApplications from "@/pages/employee/Applications";
+import AdminApplications from "@/pages/admin/Applications";
 
 export default function AppRoutes() {
   return (
@@ -35,6 +36,7 @@ export default function AppRoutes() {
         <Route path="/admin/documents" element={<AdminDocs />} />
         <Route path="/admin/jobs" element={<AdminJobs />} />
         <Route path="/admin/profile" element={<Profile />} />
+        <Route path="/admin/job-applications" element={<AdminApplications />} />
       </Route>
 
       {/* HR */}

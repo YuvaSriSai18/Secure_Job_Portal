@@ -179,9 +179,9 @@ export default function Login_Page() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="candidate">Candidate</SelectItem>
-                      <SelectItem value="hr">HR</SelectItem>
-                      <SelectItem value="admin">Admin</SelectItem>
-                      <SelectItem value="employee">Employee</SelectItem>
+                      {/* <SelectItem value="hr">HR</SelectItem> */}
+                      {/* <SelectItem value="admin">Admin</SelectItem> */}
+                      {/* <SelectItem value="employee">Employee</SelectItem> */}
                     </SelectContent>
                   </Select>
                 </div>

@@ -1,6 +1,7 @@
 import { storage } from "./firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
+// Upload PDF to Firebase
 export const uploadPDF = async (file: File, userId: string) => {
   if (!file || file.type !== "application/pdf") {
     throw new Error("Only PDF files allowed");

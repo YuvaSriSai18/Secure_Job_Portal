@@ -1,5 +1,5 @@
-import axios from "axios";
-import type { userData, Job, User } from "@/utils/types";
+import axios,{ AxiosResponse } from "axios";
+import type { userData, Job, User , Application } from "@/utils/types";
 
 const API = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URI,
@@ -22,16 +22,6 @@ export const login = async (userData: userData) =>
 export const logout = async () =>
   await API.post("/api/auth/logout");
 
-// ---- Document (placeholder) ----
-export const uploadDocument = async (doc: {
-  fileName: string;
-  filePath: string;
-  mimeType: string;
-}) => {
-  // Implement your document upload logic here
-  throw new Error("Function not implemented.");
-};
-
 // ---- Jobs APIs ----
 export const getAllJobs = async () =>
   await API.get("/api/job", { headers: getAuthHeader() });
@@ -49,7 +39,7 @@ export const deleteJob = async (id: string) =>
   await API.delete(`/api/job/${id}`, { headers: getAuthHeader() });
 
 export const applyJob = async (jobId: string, resumeUrl?: string) =>
-  await API.post(`/api/job/${jobId}/apply`, { resumeUrl }, { headers: getAuthHeader() });
+  await API.post(`/api/application/${jobId}`, { resumeUrl }, { headers: getAuthHeader() });
 
 // ---- Users APIs ----
 export const getAllUsers = async () =>
@@ -69,3 +59,34 @@ export const updateUserProfile = async (userId: string, data: Partial<User>) =>
   await API.patch(`/api/user/${userId}`, data, {
     headers: getAuthHeader(),
   });
+// ---- Document APIs ----
+export const uploadDocument = async (doc: {
+  fileName: string;
+  filePath: string;
+  mimeType: string;
+}) => {
+  return await API.post("/api/document/upload", doc, { headers: getAuthHeader() });
+};
+
+export const getMyDocuments = async () => {
+  return await API.get("/api/document/my", { headers: getAuthHeader() });
+};
+
+export const getDocument = async (id: string) => {
+  return await API.get(`/api/document/${id}`, { headers: getAuthHeader() });
+};
+
+export const deleteDocument = async (id: string) => {
+  return await API.delete(`/api/document/${id}`, { headers: getAuthHeader() });
+};
+
+// Appication APIs
+
+export const getMyApplications = async (): Promise<AxiosResponse<Application[]>> =>
+  await API.get("/api/application/my", { headers: getAuthHeader() });
+
+export const getApplicationsForJob = async (jobId: string): Promise<AxiosResponse<Application[]>> =>
+  await API.get(`/api/application/job/${jobId}`, { headers: getAuthHeader() });
+
+export const updateApplicationStatus = async (id: string, status: string) =>
+  await API.patch(`/api/application/${id}/status`, { status }, { headers: getAuthHeader() });

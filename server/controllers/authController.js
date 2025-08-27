@@ -63,6 +63,9 @@ exports.register = async (req, res) => {
     await sendVerificationEmail(user.email, verificationToken);
     console.log(`Sent verification mail to ${user.email}`);
     // issue tokens
+    const userData = await User.findOne({ email }).select(
+      "-password -refreshToken"
+    );
     const accessToken = generateAccessToken(userData);
     const refreshToken = generateRefreshToken(userData);
 
@@ -74,7 +77,7 @@ exports.register = async (req, res) => {
       message: "Registration successful! Please verify your email.",
       token: accessToken,
       user: {
-        id: user._id,
+        _id: user._id,
         name: user.name,
         email: user.email,
         role: user.role,
@@ -136,7 +139,10 @@ exports.login = async (req, res) => {
 
     user.lastLogin = new Date();
     user.lastLoginIP = req.ip;
-    const userData = await User.findOne({email}).select('-password -refreshToken')
+    const userData = await User.findOne({ email }).select(
+      "-password -refreshToken"
+    );
+    // console.log(userData)
     const accessToken = generateAccessToken(userData);
     const refreshToken = generateRefreshToken(userData);
 

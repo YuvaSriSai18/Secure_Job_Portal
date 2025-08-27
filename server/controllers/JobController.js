@@ -53,32 +53,6 @@ const JobController = {
       res.status(500).json({ message: err.message });
     }
   },
-
-  applyJob: async (req, res) => {
-    try {
-      if (req.user.id.role !== "candidate")
-        return res
-          .status(403)
-          .json({ message: "Only candidates can apply to jobs" });
-
-      const job = await Job.findById(req.params.id);
-      if (!job) return res.status(404).json({ message: "Job not found" });
-
-      const alreadyApplied = job.applications.some(
-        (app) => app.candidate.toString() === req.user.id
-      );
-      if (alreadyApplied)
-        return res.status(400).json({ message: "Already applied to this job" });
-
-      job.applications.push({ candidate: req.user.id, appliedAt: new Date() });
-      await job.save();
-
-      res.json({ message: "Applied successfully" });
-    } catch (err) {
-      console.error("applyJob error:", err);
-      res.status(500).json({ message: "Server error applying to job" });
-    }
-  },
 };
 
 module.exports = JobController;

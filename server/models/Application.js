@@ -15,6 +15,14 @@ const applicationSchema = new mongoose.Schema(
       enum: ["applied", "shortlisted", "rejected", "selected"],
       default: "applied",
     },
+    feedback: { type: String, default: "" },
+    interviewDate: { type: Date },
+    attachments: [{ fileName: String, filePath: String, fileType: String }],
+    appliedVia: {
+      type: String,
+      enum: ["web", "mobile", "email"],
+      default: "web",
+    },
   },
   { timestamps: true }
 );
