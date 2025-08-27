@@ -13,7 +13,8 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://rbnfh5ks-5500.inc1.devtunnels.ms",
+      "https://secure-job-portal.vercel.app",
+      "https://secure-job-portal.onrender.com"
     ],
     credentials: true,
   })
