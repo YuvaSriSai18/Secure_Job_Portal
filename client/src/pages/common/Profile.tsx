@@ -38,10 +38,10 @@ export default function Profile() {
 
   // Fetch profile from API
   const fetchProfile = async () => {
-    if (!userData._id) return;
+    if (!userData?._id) return;
     try {
       setLoading(true);
-      const res = await API.getUserById(userData._id);
+      const res = await API.getUserById(userData?._id);
       setProfile(res.data);
       setDocuments(res.data.documents || []);
       setForm({ name: res.data.name, email: res.data.email });

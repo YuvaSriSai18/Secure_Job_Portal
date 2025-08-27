@@ -59,7 +59,7 @@ export default function AdminJobs() {
       if (editingJobId) {
         await API.updateJob(editingJobId, form as Job);
       } else {
-        const jobToCreate = { ...form, postedBy: userData._id } as Job;
+        const jobToCreate = { ...form, postedBy: userData?._id } as Job;
         await API.createJob(jobToCreate);
       }
       setForm({});

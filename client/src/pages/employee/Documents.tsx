@@ -39,7 +39,7 @@ export default function EmployeeDocuments() {
 
     try {
       setUploading(true);
-      const userId = userData._id; // get currently logged-in user ID
+      const userId = userData?._id; // get currently logged-in user ID
       if (!userId) {
         alert("User ID not found. Please log in again.");
         setUploading(false);

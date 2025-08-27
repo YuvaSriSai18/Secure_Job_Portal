@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <div className="bg-gradient-to-br from-blue-100 to-purple-200 min-h-screen">
-      {userData.email && (
+      {userData?.email && (
         <div className="p-4 flex justify-end">
           <Button variant="outline" onClick={handleLogout} disabled={loading}>
             {loading ? "Logging Out..." : "Logout"}

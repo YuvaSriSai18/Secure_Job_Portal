@@ -3,7 +3,7 @@ import type { RootState } from "../store";
 import type { AuthState, User } from "@/utils/types";
 
 const initialState: AuthState = {
-  userData: {},
+  userData: null,  // ✅ start with null, not {}
 };
 
 const authSlice = createSlice({
@@ -14,10 +14,12 @@ const authSlice = createSlice({
       state.userData = action.payload;
     },
     updateUserData(state, action: PayloadAction<Partial<User>>) {
-      state.userData = { ...state.userData, ...action.payload };
+      if (state.userData) {
+        state.userData = { ...state.userData, ...action.payload };
+      }
     },
     clearUserData(state) {
-      state.userData = {};
+      state.userData = null; // ✅ null instead of {}
     },
   },
 });

@@ -27,7 +27,7 @@ export interface User {
 
 // Define Auth state
 export interface AuthState {
-  userData: User;
+  userData: User | null;
 }
 export interface Job {
   _id?: string | null;
