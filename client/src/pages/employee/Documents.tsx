@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as API from "@/apis/index";
 import { Button } from "@/components/ui/button";
 import type { UserDocument } from "@/utils/types";

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as API from "@/apis/index";
 import type { Job, User, Application } from "@/utils/types";
-import { Button } from "@/components/ui/button";
 
 export default function AdminApplications() {
   const [jobs, setJobs] = useState<Job[]>([]);

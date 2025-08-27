@@ -35,9 +35,11 @@ export default function AdminJobs() {
 
   // Handle input changes
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    const { name, value, type, checked } = e.target as HTMLInputElement;
+    const { name, value, checked } = e.target as HTMLInputElement;
     if (name === "salary") {
       setForm({ ...form, salary: Number(value) });
     } else if (name === "tags") {
@@ -103,7 +105,12 @@ export default function AdminJobs() {
         <form onSubmit={handleSubmit} className="space-y-3">
           <div>
             <Label>Title</Label>
-            <Input name="title" value={form.title || ""} onChange={handleChange} required />
+            <Input
+              name="title"
+              value={form.title || ""}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div>
             <Label>Description</Label>
@@ -116,15 +123,28 @@ export default function AdminJobs() {
           </div>
           <div>
             <Label>Department</Label>
-            <Input name="department" value={form.department || ""} onChange={handleChange} />
+            <Input
+              name="department"
+              value={form.department || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
             <Label>Location</Label>
-            <Input name="location" value={form.location || ""} onChange={handleChange} />
+            <Input
+              name="location"
+              value={form.location || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
             <Label>Salary</Label>
-            <Input type="number" name="salary" value={form.salary ?? ""} onChange={handleChange} />
+            <Input
+              type="number"
+              name="salary"
+              value={form.salary ?? ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
             <Label>Job Type</Label>
@@ -141,7 +161,11 @@ export default function AdminJobs() {
           </div>
           <div>
             <Label>Tags (comma separated)</Label>
-            <Input name="tags" value={form.tags?.join(",") || ""} onChange={handleChange} />
+            <Input
+              name="tags"
+              value={form.tags?.join(",") || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
             <Label>Experience Required</Label>
@@ -196,12 +220,18 @@ export default function AdminJobs() {
                   <td className="border px-2 py-1">{job.salary}</td>
                   <td className="border px-2 py-1">{job.jobType}</td>
                   <td className="border px-2 py-1">{job.experienceRequired}</td>
-                  <td className="border px-2 py-1">{job.isActive ? "Yes" : "No"}</td>
+                  <td className="border px-2 py-1">
+                    {job.isActive ? "Yes" : "No"}
+                  </td>
                   <td className="border px-2 py-1 flex gap-2">
                     <Button size="sm" onClick={() => handleEdit(job)}>
                       Edit
                     </Button>
-                    <Button size="sm" variant="destructive" onClick={() => handleDelete(job._id!)}>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={() => handleDelete(job._id!)}
+                    >
                       Delete
                     </Button>
                   </td>

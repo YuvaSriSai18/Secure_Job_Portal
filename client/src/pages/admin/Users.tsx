@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as API from "@/apis/index";
 import { Button } from "@/components/ui/button";
-import { Select } from "@/components/ui/select";
-import { useSelector } from "react-redux";
-import { selectUserData } from "@/reducers/auth/authSlice";
+// import { Select } from "@/components/ui/select";
+// import { useSelector } from "react-redux";
+// import { selectUserData } from "@/reducers/auth/authSlice";
 import type { User } from "@/utils/types";
 
 export default function AdminUsers() {
@@ -13,7 +13,7 @@ export default function AdminUsers() {
   const [roleEditingId, setRoleEditingId] = useState<string | null>(null);
   const [newRole, setNewRole] = useState<string>("candidate");
 
-  const userData = useSelector(selectUserData);
+  // const userData = useSelector(selectUserData);
 
   // Fetch all users
   const fetchUsers = async () => {

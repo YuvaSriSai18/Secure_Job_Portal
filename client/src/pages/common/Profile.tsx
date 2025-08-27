@@ -76,6 +76,7 @@ export default function Profile() {
   };
 
   if (!profile) return <p className="p-6">Loading profile...</p>;
+  if (loading) return <p className="p-6">Loading...</p>;
 
   return (
     <div className="p-6 max-w-3xl mx-auto space-y-6">

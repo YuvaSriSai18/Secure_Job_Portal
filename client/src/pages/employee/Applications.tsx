@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as API from "@/apis/index";
 import type { Application, Job } from "@/utils/types";
 
